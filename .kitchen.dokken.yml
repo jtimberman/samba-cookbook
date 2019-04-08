@@ -1,9 +1,9 @@
 ---
 driver:
   name: dokken
-  privileged: true # because Docker and SystemD/Upstart
+  privileged: true
   chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
-  volumes: [ '/mnt' ]
+  volumes: ['/mnt']
 
 transport:
   name: dokken
@@ -16,78 +16,78 @@ verifier:
   name: inspec
 
 platforms:
-- name: amazonlinux
-  driver:
-    image: dokken/amazonlinux
-    privileged: true
-    pid_one_command: /sbin/init
-    intermediate_instructions:
-      - RUN touch /etc/sysconfig/network
+  - name: amazonlinux
+    driver:
+      image: dokken/amazonlinux
+      privileged: true
+      pid_one_command: /sbin/init
+      intermediate_instructions:
+        - RUN touch /etc/sysconfig/network
 
-- name: debian-7
-  driver:
-    image: dokken/debian-7
-    pid_one_command: /sbin/init
-    privileged: true
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
+  - name: debian-7
+    driver:
+      image: dokken/debian-7
+      pid_one_command: /sbin/init
+      privileged: true
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
 
-- name: debian-8
-  driver:
-    image: dokken/debian-8
-    pid_one_command: /bin/systemd
-    privileged: true
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
+  - name: debian-8
+    driver:
+      image: dokken/debian-8
+      pid_one_command: /bin/systemd
+      privileged: true
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
 
-- name: debian-9
-  driver:
-    image: dokken/debian-9
-    pid_one_command: /bin/systemd
-    privileged: true
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
+  - name: debian-9
+    driver:
+      image: dokken/debian-9
+      pid_one_command: /bin/systemd
+      privileged: true
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
 
-- name: centos-6
-  driver:
-    image: dokken/centos-6
-    privileged: true
-    pid_one_command: /sbin/init
+  - name: centos-6
+    driver:
+      image: dokken/centos-6
+      privileged: true
+      pid_one_command: /sbin/init
 
-- name: centos-7
-  driver:
-    image: dokken/centos-7
-    privileged: true
-    pid_one_command: /usr/lib/systemd/systemd
-    internediate_instructions:
-      - RUN touch /etc/fstab
+  - name: centos-7
+    driver:
+      image: dokken/centos-7
+      privileged: true
+      pid_one_command: /usr/lib/systemd/systemd
+      internediate_instructions:
+        - RUN touch /etc/fstab
 
-- name: fedora-latest
-  driver:
-    image: dokken/fedora-latest
-    privileged: true
-    pid_one_command: /usr/lib/systemd/systemd
-    internediate_instructions:
-      - RUN touch /etc/fstab
+  - name: fedora-latest
+    driver:
+      image: dokken/fedora-latest
+      privileged: true
+      pid_one_command: /usr/lib/systemd/systemd
+      internediate_instructions:
+        - RUN touch /etc/fstab
 
-- name: ubuntu-16.04
-  driver:
-    image: dokken/ubuntu-16.04
-    pid_one_command: /sbin/init
-    privileged: true
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
+  - name: ubuntu-16.04
+    driver:
+      image: dokken/ubuntu-16.04
+      pid_one_command: /sbin/init
+      privileged: true
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
 
-- name: ubuntu-18.04
-  driver:
-    image: dokken/ubuntu-18.04
-    pid_one_command: /bin/systemd
-    privileged: true
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
+  - name: ubuntu-18.04
+    driver:
+      image: dokken/ubuntu-18.04
+      pid_one_command: /bin/systemd
+      privileged: true
+      intermediate_instructions:
+        - RUN /usr/bin/apt-get update
 
-- name: opensuse-leap
-  driver:
-    image: dokken/opensuse-leap
-    pid_one_command: /bin/systemd
-    privileged: true
+  - name: opensuse-leap
+    driver:
+      image: dokken/opensuse-leap
+      pid_one_command: /bin/systemd
+      privileged: true

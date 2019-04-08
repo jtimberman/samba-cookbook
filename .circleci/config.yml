@@ -1,21 +1,35 @@
+---
+lint_and_unit: &lint_and_unit
+  - delivery
+  - danger
+  - lint-yaml
+  - lint-markdown
+
 version: 2.1
 
 orbs:
-  kitchen: sous-chefs/kitchen@1.0.0
+  kitchen: sous-chefs/kitchen@1
 
 workflows:
   kitchen:
     jobs:
+      # Lint and Unit Test
+      - kitchen/yamllint:
+          name: lint-yaml
+      - kitchen/mdlint:
+          name: lint-markdown
       - kitchen/danger:
           name: danger
           context: Danger
-      - kitchen/lint:
-          name: lint
+      - kitchen/delivery:
+          name: delivery
       - kitchen/dokken:
           name: client
           suite: client
-          requires: [ lint, danger ]
+          requires:
+            *lint_and_unit
       - kitchen/dokken:
           name: server
           suite: server
-          requires: [ lint, danger ]
+          requires:
+            *lint_and_unit

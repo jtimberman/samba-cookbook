@@ -10,7 +10,6 @@ The master branch is the current committed changes. These changes may not yet be
 
 All releases are tagged in git. To see the releases available to you see the changelog or the tags directly.
 
-
 ## Pull requests
 
 - <https://github.com/sous-chefs/samba/pulls>
