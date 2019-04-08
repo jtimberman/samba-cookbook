@@ -1,21 +1,3 @@
-#
-# Cookbook:: samba
-# Resource:: server
-#
-# Copyright:: 2010-2016, Chef Software, Inc <legal@opscode.com>
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
 property :server_string, String, name_property: true
 property :workgroup, String, default: 'SAMBA'
 property :interfaces, String, default: 'lo 127.0.0.1'
@@ -34,14 +16,7 @@ property :log_level, String, default: '0'
 property :winbind_separator, String, default: '\\'
 property :idmap_config, String
 property :socket_options, String, default: '`TCP_NODELAY`'
-property :log_dir, String, default: lazy {
-  case node['platform_family']
-  when 'rhel', 'fedora', 'amazon', 'suse'
-    '/var/log/samba/log.%m'
-  else
-    '/var/log/samba/%m.log'
-  end
-}
+property :log_dir, String, default: lazy { Chef::Samba.log_dir }
 property :max_log_size, [String, Integer], default: '5000' # 5M
 property :options, [Hash, nil], default: nil
 property :enable_users_search, [TrueClass, FalseClass], default: true
@@ -105,4 +80,8 @@ action :create do
       end
     end
   end
+end
+
+action_class do
+  include Chef::Samba
 end

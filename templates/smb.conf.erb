@@ -27,6 +27,7 @@
   dns proxy = <%= @dns_proxy %>
   max log size = <%= @max_log_size %>
   bind interfaces only = <%= @bind_interfaces_only %>
+  log level = <%= @log_level %>
 
 <% if !@samba_options.nil? %>
   <% @samba_options.each do |opt_name,opt_value| -%>
