@@ -20,6 +20,8 @@ platforms:
     driver:
       image: dokken/amazonlinux
       pid_one_command: /sbin/init
+      intermediate_instructions:
+        - RUN touch /etc/sysconfig/network
 
   - name: amazonlinux-2
     driver:
